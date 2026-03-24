@@ -7,8 +7,20 @@
   <title>Redirecting</title>
   <style>
     body {
+      position: relative;
+      min-height: 100vh;
       background: linear-gradient(180deg, #ffffff 0%, #fbfdff 48%, #fffdfd 100%);
       animation: page-breathe 8s ease-in-out infinite;
+    }
+
+    .footer-note {
+      position: fixed;
+      right: 16px;
+      bottom: 12px;
+      color: rgba(0, 0, 0, 0.12);
+      font-size: 0.9rem;
+      white-space: nowrap;
+      pointer-events: none;
     }
 
     .glitter {
@@ -270,9 +282,21 @@
 <body>
   <main>
     <h1>Voce quis dizer <span class="glitter">https://find-my-saas.com<span class="route route-a" aria-hidden="true"></span><span class="route route-b" aria-hidden="true"></span><i></i></span> ?</h1>
-    <p>Redirecionando em 4 segundos. Se nada acontecer, <a href="https://find-my-saas.com">clique aqui</a>.</p>
+    <p>Redirecionando em <span id="countdown">4</span> segundos. Se nada acontecer, <a href="https://find-my-saas.com">clique aqui</a>.</p>
   </main>
+  <div class="footer-note">Um oferecimento #bolhasec</div>
   <script>
+    var remainingSeconds = 4;
+    var countdownElement = document.getElementById("countdown");
+
+    window.setInterval(function () {
+      remainingSeconds -= 1;
+
+      if (remainingSeconds > 0) {
+        countdownElement.textContent = String(remainingSeconds);
+      }
+    }, 1000);
+
     window.setTimeout(function () {
       window.location.replace("https://find-my-saas.com");
     }, 4000);
